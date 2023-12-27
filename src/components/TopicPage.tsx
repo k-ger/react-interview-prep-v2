@@ -14,7 +14,6 @@ interface ITopicPageState {
     sandboxes: Link[];
     randomQuestions: Question[];
     randomQuestionIdx: number;
-    showAll: boolean;
     activeTab: TopicTab
 }
 
@@ -41,7 +40,6 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
             sandboxes: [],
             randomQuestions: [],
             randomQuestionIdx: 0,
-            showAll: false,
             activeTab: TopicTab.QUESTIONS
         }
     }
@@ -85,7 +83,7 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
                 <div className="">
                     {
                         this.props.categoryId !== Category.RANDOM ?
-                        <div className="mx-4 py-1">
+                        <div className={this._getToggleClass()}>
                             <Toggle offText={'Show All'} onText={'Hide All'} change={this.toggleAll}></Toggle>
                         </div>
                         :
@@ -115,9 +113,13 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
         }
     }
 
+    private _getToggleClass = () => {
+        return "mx-4 py-1" + (this.state.activeTab === TopicTab.QUESTIONS ? "" : " pointer-events-none opacity-0" );
+    }
+
     private _setCategory = () => {
         if(this.props.categoryId === Category.RANDOM) {
-            let shuffledQuestions = this._getShuffledQuestions();
+            const shuffledQuestions = this._getShuffledQuestions();
             this.setState({
                 questions: [shuffledQuestions[0]],
                 links: [],
@@ -136,12 +138,12 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
     }
 
     private _getShuffledQuestions = () => {
-        let questions = this._allQuestions.slice();
-        let len = questions.length;
+        const questions = this._allQuestions.slice();
+        const len = questions.length;
         //shuffle by traversing whole array and moving each to a random new spot
         for(let i = 0; i < len; i++) {
-            let randomIdx = Math.floor(Math.random()*len);
-            let temp = questions[randomIdx];
+            const randomIdx = Math.floor(Math.random()*len);
+            const temp = questions[randomIdx];
             questions[randomIdx] = questions[i];
             questions[i] = temp;
         }
@@ -236,8 +238,8 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
     }
 
     private _getTabClassName = (tab?: TopicTab): string => {
-        let classNameSelected = `flex flex-col sm:flex-row items-center font-medium text-gray-300 py-2 sm:py-3 border-b-2 border-gray-200 focus:outline-none`;
-        let className = `flex flex-col sm:flex-row items-center font-medium text-gray-500 hover:text-gray-400 py-2 sm:py-3 border-b-2 border-transparent focus:outline-none`;
+        const classNameSelected = `flex flex-col sm:flex-row items-center font-medium text-gray-300 py-2 sm:py-3 border-b-2 border-gray-200 focus:outline-none`;
+        const className = `flex flex-col sm:flex-row items-center font-medium text-gray-500 hover:text-gray-400 py-2 sm:py-3 border-b-2 border-transparent focus:outline-none`;
 
         let result = (tab === TopicTab.RANDOM_TOGGLE || tab === this.state.activeTab) ? classNameSelected : className;
         if(tab === TopicTab.RANDOM_TOGGLE) {
@@ -247,8 +249,8 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
     }
 
     private _getTabIconClassName = (tab?: TopicTab): string => {
-        let classNameSelected = `w-6 sm:w-5 sm:mr-2`;
-        let className = `w-6 sm:w-5 sm:mr-2`;
+        const classNameSelected = `w-6 sm:w-5 sm:mr-2`;
+        const className = `w-6 sm:w-5 sm:mr-2`;
         //they're the same for now!!
         return (tab === TopicTab.RANDOM_TOGGLE || tab === this.state.activeTab) ? classNameSelected : className;
     }
@@ -260,8 +262,8 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
     }
 
     private _toggleShowAnswer = (q: Question) => {
-        let questions = [...this.state.questions];
-        let question = questions.find(x => x.id() === q.id());
+        const questions = [...this.state.questions];
+        const question = questions.find(x => x.id() === q.id());
         question?.toggleShowA();
         this.setState({
             questions: questions
@@ -269,7 +271,7 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
     }
 
     public toggleAll = (isShow: boolean) => {
-        let questions = [...this.state.questions];
+        const questions = [...this.state.questions];
         if (isShow) {
             questions.forEach(x => x.showAns());
             this.setState({ questions: questions });

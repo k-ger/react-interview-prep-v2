@@ -3,7 +3,6 @@ import TopicPage from "./TopicPage";
 import { Category, CategoryDescription, CategoryName } from "../common/models";
 import Icon, { IconType } from "../icons/Icon";
 import FadeInContainer from "./FadeInContainer";
-// import TextAnimationContainer from "./TextAnimationContainer";
 
 interface IHomeProps {
 
@@ -77,7 +76,6 @@ class Home extends Component<IHomeProps, IHomeState> {
 
     private _getCategoryDescription = (categoryId: number) => {
         return (
-            // <TextAnimationContainer text={CategoryDescription.get(categoryId)}></TextAnimationContainer>
             CategoryDescription.get(categoryId)
         );
     }
