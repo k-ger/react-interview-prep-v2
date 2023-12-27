@@ -1,6 +1,6 @@
 {
-  "short_name": "Interview Prep",
-  "name": "React Interview Prep Site",
+  "short_name": "Interview Questions",
+  "name": "React Interview Practice Site",
   "icons": [
     {
       "src": "favicon.ico",

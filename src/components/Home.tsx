@@ -27,8 +27,8 @@ class Home extends Component<IHomeProps, IHomeState> {
                         <div className="max-w-7xl mx-auto px-2 py-2 sm:px-6 lg:px-8 sm:flex sm:justify-start">
                             <div className="flex items-center  whitespace-nowrap justify-center sm:justify-start">
                                 <Icon iconType={IconType.Learn} className='w-6 pb-2 sm:pb-0 sm:w-8'></Icon>
-                                <h1 className="text-white pr-0 pb-2 sm:pb-0 sm:mr-8 text-l sm:text-2xl font-bold sm:pr-4 cursor-default tracking-tighter ">
-                                    interviewPrep
+                                <h1 className="text-white pr-0 pb-2 sm:pb-0 sm:mr-8 text-l sm:text-2xl font-bold sm:pr-4 cursor-default tracking-tighter">
+                                    Interview Questions
                                 </h1>
                             </div>
                             <div className="flex space-x-4 flex-wrap items-center justify-center sm:items-stretch sm:justify-start">
