@@ -46,7 +46,7 @@ class TopicPage extends Component<ITopicPageProps, ITopicPageState> {
 
     render() {
         return (
-            <div className="bg-white shadow overflow-hidden rounded-md sm:rounded-lg">
+            <div className="bg-white shadow-md overflow-hidden rounded-md sm:rounded-lg">
                 <div className="bg-indigo-900 flex sm:block justify-center px-4 sm:px-6">
                     <div className="sm:ml-10 space-x-12 sm:space-x-12 flex">
 
